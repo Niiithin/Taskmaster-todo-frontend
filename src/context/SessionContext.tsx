@@ -1,10 +1,8 @@
 /* Imports */
 import { Box } from "@mui/material";
 import LoadingScreen from "components/LoadingScreen";
-import { appHostName } from "config/config";
 import {
   getAccessToken,
-  isValidToken,
   removeAccessToken,
   setAccessToken,
 } from "helper/authHelper";
