@@ -122,6 +122,12 @@ const SignUpForm = (): JSX.Element => {
                   size="large"
                   variant="contained"
                   loading={isSubmitting}
+                  sx={{
+                    "&:hover": {
+                      bgcolor: "#000000",
+                      color: "#ffffff",
+                    },
+                  }}
                 >
                   Sign Up
                 </LoadingButton>
