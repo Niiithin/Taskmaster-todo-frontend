@@ -7,6 +7,7 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
+  CircularProgress,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -45,6 +46,7 @@ const Home: React.FC = () => {
   /* States */
   const [scrollPosition, setScrollPosition] = useState(0);
   const [todoItem, setTodoItem] = useState<TodoItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [addTaskDialogOpen, setAddTaskDialogOpen] = useState(false);
   const isXs = useMediaQuery(
@@ -68,6 +70,7 @@ const Home: React.FC = () => {
   const { width, height } = getCardSize();
 
   const getAllToDoRequest = async () => {
+    setIsLoading(true);
     try {
       const response = await getAllTodos();
       if (response.status === 200) {
@@ -75,6 +78,8 @@ const Home: React.FC = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -190,7 +195,19 @@ const Home: React.FC = () => {
           marginRight: theme.spacing(-1),
         }}
       >
-        {todoItem.length === 0 ? (
+        {isLoading ? (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              height: height,
+            }}
+          >
+            <CircularProgress />
+          </Box>
+        ) : todoItem.length === 0 ? (
           <Box
             sx={{
               flexShrink: 0,

@@ -94,7 +94,8 @@ const ConfirmDialog = ({
             onClick={onDisAgreeAction}
             sx={{
               "&:hover": {
-                bgcolor: "#E5EAFC",
+                bgcolor: "#000000",
+                color: "#ffffff",
               },
             }}
           >
@@ -110,7 +111,8 @@ const ConfirmDialog = ({
             onClick={onAgreeAction2}
             sx={{
               "&:hover": {
-                bgcolor: "#E5EAFC",
+                bgcolor: "#000000",
+                color: "#ffffff",
               },
             }}
           >
@@ -125,8 +127,8 @@ const ConfirmDialog = ({
           onClick={onAgreeAction}
           sx={{
             "&:hover": {
-              bgcolor: "#643DF6",
-              color: "#000000",
+              bgcolor: "#000000",
+              color: "#ffffff",
             },
           }}
         >

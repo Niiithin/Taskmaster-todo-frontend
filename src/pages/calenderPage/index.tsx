@@ -53,7 +53,6 @@ export const Calendar = (): JSX.Element => {
       setTotalPages(1);
     }
   }, [selectedDate, status, page]);
-  console.log(todoList, "list");
   useEffect(() => {
     getAllTodoList();
   }, [selectedDate, getAllTodoList, status, page]);

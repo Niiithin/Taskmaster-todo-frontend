@@ -44,7 +44,6 @@ const SignInForm = ({ onSubmitSuccess }: Props): JSX.Element => {
         values.txtEmail,
         values.txtPassword
       );
-      console.log(response, "res");
       if (response.status === 200) {
         const profileResponse = await getUserProfileRequest(
           response.data.token

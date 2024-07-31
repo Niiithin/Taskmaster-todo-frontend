@@ -61,7 +61,6 @@ const AddTask: React.FC<AddTaskProps> = ({
         values.dueDate
       );
       if (response.status === 201) {
-        console.log(response, "res");
         showToast(toastMessages.success.task.added, "success");
       }
       onTaskAdded();

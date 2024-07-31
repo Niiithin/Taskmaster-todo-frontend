@@ -32,4 +32,16 @@ export default {
     marginLeft: theme.spacing(4),
     marginBottom: theme.spacing(3),
   }),
+  emptyContainer: (theme: any) => ({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 10,
+  }),
+  loaderContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: "200px",
+  },
 };

@@ -1,9 +1,8 @@
-/*Imports */
+// NotiTemplate.tsx
 
 import { Box, ButtonBase, Stack, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 
-/* Relative Imports */
 import { handleInviteNotifications } from "services/notification";
 import SessionContext from "context/SessionContext";
 import { User } from "models/notificationModel";
@@ -12,12 +11,8 @@ import { toastMessages } from "constants/appConstants";
 import { showToast } from "utility/toast";
 import { ConfirmDialog } from "components/Dialog";
 
-/* Local Imports */
 import styles from "./index.style";
 
-// ----------------------------------------------------------------------
-
-/* Interface */
 interface NotiTemplateProps {
   id: string;
   status: string;
@@ -25,9 +20,8 @@ interface NotiTemplateProps {
   recieverDetails: User;
   taskName: string;
   time: string;
+  onUpdate: () => void;
 }
-
-// ----------------------------------------------------------------------
 
 const NotiTemplate = ({
   id,
@@ -36,14 +30,11 @@ const NotiTemplate = ({
   recieverDetails,
   taskName,
   time,
+  onUpdate,
 }: NotiTemplateProps): JSX.Element => {
-  /* States */
   const [dialogOpen, setDialogOpen] = useState(false);
-
-  /* Constants */
   const user = useContext(SessionContext).user;
 
-  /* Functions */
   const handleClick = () => {
     const { openDialog } = getNotificationText(
       status,
@@ -61,6 +52,7 @@ const NotiTemplate = ({
       const response = await handleInviteNotifications(id, "accepted");
       if (response.status === 200) {
         showToast(toastMessages.success.task.acceptedRequest, "success");
+        onUpdate();
       }
       setDialogOpen(false);
     } catch (error) {
@@ -73,6 +65,7 @@ const NotiTemplate = ({
     try {
       const response = await handleInviteNotifications(id, "rejected");
       showToast(toastMessages.success.task.rejectedRequest, "success");
+      onUpdate();
       setDialogOpen(false);
     } catch (error) {
       showToast(toastMessages.error.common, "error");
@@ -166,7 +159,6 @@ const NotiTemplate = ({
     return { text: <></>, openDialog: false };
   };
 
-  /* Output */
   return (
     <>
       <ButtonBase
