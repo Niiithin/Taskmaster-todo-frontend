@@ -20,7 +20,7 @@ const SignUpForm = (): JSX.Element => {
   const navigate = useNavigate();
 
   /* Constants */
-  const [initialValues, setInitialValues] = useState({
+  const [initialValues] = useState({
     txtName: "",
     txtEmail: "",
     txtPassword: "",
@@ -65,6 +65,8 @@ const SignUpForm = (): JSX.Element => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleFormSubmit}
+        validateOnChange={false}
+        validateOnBlur={false}
       >
         {({
           errors,
@@ -75,54 +77,56 @@ const SignUpForm = (): JSX.Element => {
           touched,
           values,
         }) => (
-          <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-            <Box mb={3}>
-              <TextInput
-                name="txtName"
-                label="User Name"
-                placeholder="Enter user name"
-                value={values.txtName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={Boolean(touched.txtName && errors.txtName)}
-                helperText={String(touched.txtName && errors.txtName)}
-              />
-            </Box>
-            <Box mb={3}>
-              <TextInput
-                name="txtEmail"
-                label="Email Address"
-                placeholder="Enter email address"
-                value={values.txtEmail}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={Boolean(touched.txtEmail && errors.txtEmail)}
-                helperText={String(touched.txtEmail && errors.txtEmail)}
-              />
-            </Box>
-            <Box mb={2}>
-              <PasswordInput
-                name="txtPassword"
-                label="Password"
-                placeholder="Enter password"
-                value={values.txtPassword}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={Boolean(touched.txtPassword && errors.txtPassword)}
-                helperText={String(touched.txtPassword && errors.txtPassword)}
-              />
-            </Box>
-            <Box>
-              <LoadingButton
-                fullWidth
-                type="submit"
-                size="large"
-                variant="contained"
-                loading={isSubmitting}
-              >
-                Sign Up
-              </LoadingButton>
-            </Box>
+          <>
+            <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+              <Box mb={3}>
+                <TextInput
+                  name="txtName"
+                  label="User Name"
+                  placeholder="Enter user name"
+                  value={values.txtName}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={Boolean(touched.txtName && errors.txtName)}
+                  helperText={String(touched.txtName && errors.txtName)}
+                />
+              </Box>
+              <Box mb={3}>
+                <TextInput
+                  name="txtEmail"
+                  label="Email Address"
+                  placeholder="Enter email address"
+                  value={values.txtEmail}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={Boolean(touched.txtEmail && errors.txtEmail)}
+                  helperText={String(touched.txtEmail && errors.txtEmail)}
+                />
+              </Box>
+              <Box mb={2}>
+                <PasswordInput
+                  name="txtPassword"
+                  label="Password"
+                  placeholder="Enter password"
+                  value={values.txtPassword}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={Boolean(touched.txtPassword && errors.txtPassword)}
+                  helperText={String(touched.txtPassword && errors.txtPassword)}
+                />
+              </Box>
+              <Box>
+                <LoadingButton
+                  fullWidth
+                  type="submit"
+                  size="large"
+                  variant="contained"
+                  loading={isSubmitting}
+                >
+                  Sign Up
+                </LoadingButton>
+              </Box>
+            </Form>
             <Stack
               flexDirection={"row"}
               justifyContent={"center"}
@@ -130,10 +134,18 @@ const SignUpForm = (): JSX.Element => {
               gap={1}
               mt={2}
             >
-              <Typography>Already have an account? </Typography>
-              <Link to={PAGE_ROOT.signIn.absolutePath}>Login</Link>
+              <Typography>Already have an account?</Typography>
+              <Link
+                to="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate(PAGE_ROOT.signIn.absolutePath);
+                }}
+              >
+                Login
+              </Link>
             </Stack>
-          </Form>
+          </>
         )}
       </Formik>
     </>

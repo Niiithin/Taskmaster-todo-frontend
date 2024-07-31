@@ -22,12 +22,12 @@ export const toastMessages = {
     task: {
       added: "Task added successfully",
       deleted: "Task deleted successfully",
-      updated: "Task updated succeddfully",
+      updated: "Task updated successfully",
       sentRequest: "Collaboration request sent successfully",
       rejectedRequest: "Rejected collaboration request",
       acceptedRequest: "Accepted collaboration request",
       completed: "Task Completed",
-      resume: "Task Resumed",
+      incomplete: "Task marked as incomplete",
     },
   },
   error: {
@@ -42,6 +42,7 @@ export const toastMessages = {
     },
     collab: {
       userNotRegistered: "User has not registered",
+      invalidEmailId: "Invalid email id",
     },
   },
 };

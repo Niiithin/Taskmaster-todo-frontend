@@ -169,6 +169,8 @@ const TaskCardTemplate = ({
       } catch (error: any) {
         if (error.response.status === 404) {
           showToast(toastMessages.error.collab.userNotRegistered, "error");
+        } else if (error.response.status === 400) {
+          showToast(toastMessages.error.collab.invalidEmailId, "error");
         } else {
           showToast(toastMessages.error.common, "error");
         }
@@ -192,7 +194,11 @@ const TaskCardTemplate = ({
       if (response.status === 200) {
         onStatusChange(todoId, newStatus);
         handleClose();
-        showToast(toastMessages.success.task.completed, "success");
+        {
+          newStatus === "Completed"
+            ? showToast(toastMessages.success.task.completed, "success")
+            : showToast(toastMessages.success.task.incomplete, "success");
+        }
       }
     } catch (error) {
       handleClose();
@@ -321,7 +327,7 @@ const TaskCardTemplate = ({
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
-            sx={{ padding: 0, minWidth: "auto" }}
+            sx={{ padding: 2, minWidth: "auto" }}
           >
             <Box component="img" alt="options" src="/icons/options_icon.svg" />
           </Button>
@@ -350,7 +356,7 @@ const TaskCardTemplate = ({
             <>
               <TaskIcon />
               <Typography variant="subtitle2" ml={2} sx={{ flex: 1 }}>
-                Resume Task
+                Mark as Incomplete
               </Typography>
               <Box
                 sx={{
@@ -366,7 +372,7 @@ const TaskCardTemplate = ({
             <>
               <TaskIcon />
               <Typography variant="subtitle2" ml={2} sx={{ flex: 1 }}>
-                Complete
+                Mark as Complete
               </Typography>
               <Box
                 sx={{

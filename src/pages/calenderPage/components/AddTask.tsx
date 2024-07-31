@@ -41,7 +41,7 @@ const AddTask: React.FC<AddTaskProps> = ({
   /* Functions */
   const validationSchema = Yup.object().shape({
     txtTitle: Yup.string().required("Title is required"),
-    txtDescription: Yup.string().required("Body is required"),
+    txtDescription: Yup.string().required("Description is required"),
     scheduledDate: Yup.date().nullable().required("Scheduled date is required"),
     dueDate: Yup.date()
       .nullable()
@@ -61,6 +61,7 @@ const AddTask: React.FC<AddTaskProps> = ({
         values.dueDate
       );
       if (response.status === 201) {
+        console.log(response, "res");
         showToast(toastMessages.success.task.added, "success");
       }
       onTaskAdded();
@@ -82,6 +83,8 @@ const AddTask: React.FC<AddTaskProps> = ({
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleFormSubmit}
+          validateOnChange={false}
+          validateOnBlur={false}
         >
           {({
             errors,
@@ -210,6 +213,14 @@ const AddTask: React.FC<AddTaskProps> = ({
                     size="large"
                     variant="contained"
                     loading={isSubmitting}
+                    sx={{
+                      backgroundColor: "primary.main",
+                      color: "white",
+                      "&:hover": {
+                        backgroundColor: "black",
+                        color: "white",
+                      },
+                    }}
                   >
                     Add Task
                   </LoadingButton>
@@ -220,6 +231,14 @@ const AddTask: React.FC<AddTaskProps> = ({
                     size="large"
                     variant="contained"
                     onClick={onClose}
+                    sx={{
+                      backgroundColor: "primary.light",
+                      color: "black",
+                      "&:hover": {
+                        backgroundColor: "black",
+                        color: "white",
+                      },
+                    }}
                   >
                     Cancel
                   </LoadingButton>

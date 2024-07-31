@@ -105,7 +105,7 @@ const styles = {
     backgroundColor: "black",
   }),
   menuContainerStyles: (theme: any) => ({
-    maxWidth: "220px",
+    maxWidth: "280px",
   }),
   menuItemStyles: (theme: any) => ({
     // padding: 0,
