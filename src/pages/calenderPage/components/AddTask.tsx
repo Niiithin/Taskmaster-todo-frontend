@@ -52,8 +52,12 @@ const AddTask: React.FC<AddTaskProps> = ({
 
   /* Functions */
   const validationSchema = Yup.object().shape({
-    txtTitle: Yup.string().required("Title is required"),
-    txtDescription: Yup.string().required("Description is required"),
+    txtTitle: Yup.string()
+      .min(3, "Title should be at least 3 characters long")
+      .required("Title is required"),
+    txtDescription: Yup.string()
+      .min(6, "Description should be at least 6 characters long")
+      .required("Description is required"),
     scheduledDate: Yup.date().nullable().required("Scheduled date is required"),
     dueDate: Yup.date()
       .nullable()

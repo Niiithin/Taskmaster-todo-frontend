@@ -233,8 +233,12 @@ const Home: React.FC = () => {
               }}
               onClick={() => setAddTaskDialogOpen(true)}
             >
-              <Typography variant="h4" color={"#fff"}>
-                + Add New Task
+              <Typography
+                variant="h4"
+                color={"#fff"}
+                sx={{ textAlign: "center" }}
+              >
+                <b>Create your first task</b>
               </Typography>
             </Box>
           </Box>
