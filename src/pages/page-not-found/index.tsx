@@ -30,12 +30,6 @@ const PageNotFound = (): JSX.Element => {
               you’ve mistyped the URL? Be sure to check your spelling.
             </Typography>
 
-            <Box
-              component="img"
-              alt="notfound"
-              src="/assets/illustrations/illustration_404.svg"
-              sx={{ width: "100%", maxHeight: 240, my: { xs: 5, sm: 10 } }}
-            />
             <Button href="/" size="large" variant="contained" color="secondary">
               Go to Home
             </Button>

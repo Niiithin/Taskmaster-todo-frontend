@@ -10,8 +10,6 @@
     "@mui/material": "^5.16.5",
     "@mui/x-date-pickers": "^7.11.1",
     "@reduxjs/toolkit": "^2.2.7",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.104",
@@ -46,7 +44,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@mui)/\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -68,7 +66,13 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.25.3",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "@testing-library/jest-dom": "^6.4.8",
+    "@testing-library/react": "^16.0.0",
     "@types/js-cookie": "^3.0.6",
-    "@types/webfontloader": "^1.6.38"
+    "@types/webfontloader": "^1.6.38",
+    "jest": "^27.5.1"
   }
 }
