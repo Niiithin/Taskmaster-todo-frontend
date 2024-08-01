@@ -1,5 +1,13 @@
 /*Imports */
-import { Box, Dialog, DialogContent, DialogTitle, Stack } from "@mui/material";
+import {
+  Box,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Stack,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import React, { useState } from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -30,6 +38,10 @@ const AddTask: React.FC<AddTaskProps> = ({
   onClose,
   onTaskAdded,
 }): JSX.Element => {
+  const theme = useTheme();
+
+  const isXs = useMediaQuery(theme.breakpoints.only("xs"));
+
   /* States */
   const [initialValues, setInitialValues] = useState({
     txtTitle: "",
@@ -135,6 +147,7 @@ const AddTask: React.FC<AddTaskProps> = ({
                   justifyContent: "space-between",
                   alignItems: "center",
                 }}
+                gap={isXs ? 2 : 0}
               >
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <CustomField

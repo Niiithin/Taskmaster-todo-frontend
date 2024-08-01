@@ -10,6 +10,8 @@ import {
   Stack,
   Box,
   Divider,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 
 /* Relative Imports */
@@ -36,6 +38,13 @@ const TaskDialogBox: React.FC<TaskDetailDialogProps> = ({
   onClose,
   todoId,
 }) => {
+  /* Hooks */
+  const theme = useTheme();
+
+  /* Constants */
+
+  const isXs = useMediaQuery(theme.breakpoints.only("xs"));
+
   /* States */
   const [todo, setTodo] = useState<TodoItem | null>(null);
   const [loading, setLoading] = useState(true);
@@ -132,7 +141,12 @@ const TaskDialogBox: React.FC<TaskDetailDialogProps> = ({
               </Stack>
             </Box>
             <Divider />
-            <Stack flexDirection={"row"} alignItems={"center"} gap={3}>
+            <Stack
+              flexDirection={isXs ? "column" : "row"}
+              alignItems={isXs ? "flex-start" : "center"}
+              gap={isXs ? 1 : 3}
+              marginY={2}
+            >
               <Typography>
                 <b>Start Date: </b> {formatDate(todo.scheduleDate)}
               </Typography>

@@ -79,7 +79,9 @@ const SignInForm = ({ onSubmitSuccess }: Props): JSX.Element => {
     txtEmail: Yup.string()
       .email("Please enter a valid email address.")
       .required("Please enter your registered email address."),
-    txtPassword: Yup.string().required("Please enter your login password."),
+    txtPassword: Yup.string()
+      .min(6, "Password must be at least 6 characters long")
+      .required("Please enter your login password."),
   });
 
   /* Output */
